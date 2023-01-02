@@ -1,6 +1,6 @@
 console.log('lesson 2');
 
-// Lexical environment
+// Lexical environment +
 // http://jsflow.org/docs/lex-env/
 
 //// Closure
@@ -61,28 +61,38 @@ console.log(counter())
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
 
-const makeCounter2 = (counter: number) => {
+let makeCounter2 = function(number: number) {
+	let privateCounter = 0;
+	let start = number
 
-	return () => {
-		const startCounter = counter
-		return {
-			increase: (function() {
-				console.log(++counter)
-			}),
-			decrease: --counter,
-			reset: counter = 0,
-			set: startCounter
+	return {
+		increment: function() {
+			return number = ++number
+		},
+		decrement: function() {
+			return number = --number
+		},
+		reset: function() {
+			return privateCounter;
+		},
+		set: function() {
+			return start
 		}
 	}
-}
+};
 
-const counter3 = makeCounter2(5)
-console.log(counter3())
-console.log(counter3())
+let Counter1 = makeCounter2(10);
+let Counter2 = makeCounter2(5);
 
-const counter4 = makeCounter2(10)
-console.log(counter4())
-console.log(counter4())
+console.log(Counter1.increment())
+console.log(Counter1.increment())
+console.log(Counter1.decrement())
+console.log(Counter1.set())
+
+console.log(Counter2.increment())
+console.log(Counter2.increment())
+console.log(Counter2.decrement())
+console.log(Counter2.set())
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
