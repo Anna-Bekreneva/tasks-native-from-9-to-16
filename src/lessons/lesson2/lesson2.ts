@@ -112,6 +112,7 @@ function superSum(n:number) {
 
 	function helper(...args: number[]) {
 		_arguments = [..._arguments, ...args];
+		console.log(_arguments)
 		if(_arguments.length >= n) {
 			_arguments.length = n;
 			return _arguments.reduce((acc, number) => acc + number)
@@ -122,17 +123,17 @@ function superSum(n:number) {
 	return helper;
 }
 
-superSum(0) //0
+console.log(superSum(0)) //0
 //@ts-ignore
-superSum(3)(2)(5)(3) //10
+console.log(superSum(3)(2)(5)(3)) //10
 //@ts-ignore
-superSum(3)(2)(5,3) //10
+console.log(superSum(3)(2)(5,3)) //10
 //@ts-ignore
-superSum(3)(2,5,3) //10
+console.log(superSum(3)(2,5,3)) //10
 //@ts-ignore
-superSum(3)(2,5)(3) //10
+console.log(superSum(3)(2,5)(3)) //10
 //@ts-ignore
-superSum(3)(2,5)(3,9) //10
+console.log(superSum(3)(2,5)(3,9)) //10
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 

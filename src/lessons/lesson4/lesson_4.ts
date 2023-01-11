@@ -7,6 +7,7 @@ console.log('lesson 4');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
+const promise = new Promise((resolve, reject) => console.log('Promise is created'));
 
 
 // Task 02
@@ -14,11 +15,16 @@ console.log('lesson 4');
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+const promiseTask2 = new Promise((resolve, reject) => resolve('Promise Data')
+).then((resolve) => console.log(resolve));
+
 
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
+
+const promiseTask3 = new Promise((resolve, reject) => reject('Promise Error')).catch((reject) => console.log(reject));
 
 
 // Task 04
@@ -26,6 +32,14 @@ console.log('lesson 4');
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+
+const promiseTask4 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('Promise Data');
+	}, 3000);
+}).then((resolve) => {
+	console.log(resolve);
+});
 
 
 // Task 05
@@ -49,6 +63,17 @@ console.log('lesson 4');
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
 
+const promiseTask6 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('My name is ');
+	}, 1000);
+});
+
+const onSuccess = (param: any) => param + 'Anna';
+
+const print = (printParam: any) => console.log(printParam);
+
+promiseTask6.then((resolve) => onSuccess(resolve)).then((resolve) => print(resolve));
 
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
@@ -56,7 +81,33 @@ console.log('lesson 4');
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
+const promiseName = new Promise((resolve, reject) => {
+	const objPromise: any = {name: 'Anna'};
+	resolve(objPromise);
+});
+const promiseAge = new Promise((resolve, reject) => {
+	const objPromise: any = {age: 16};
+	resolve(objPromise);
+});
+const promiseCity = new Promise((resolve, reject) => {
+	const objPromise: any = {city: ''};
+	resolve(objPromise);
+});
+// //@ts-ignore
+Promise.all([
+	promiseName,
+	promiseAge,
+	promiseCity
+]).then((resolve) => {
+	let result = {}
+	for (let i = 0; i < resolve.length; i++) {
+		//@ts-ignore
+		result = {...result, ...resolve[i]}
+	}
+
+	console.log(result);
+});
 
 
 // just a plug
-export default ()=>{};
+export default () => {};
