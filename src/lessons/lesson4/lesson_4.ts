@@ -63,15 +63,17 @@ const promiseTask4 = new Promise((resolve, reject) => {
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
 
-const promiseTask6 = new Promise((resolve, reject) => {
+const promiseTask6 = new Promise((resolve: (text: string) => any, reject) => {
 	setTimeout(() => {
 		resolve('My name is ');
 	}, 1000);
 });
 
-const onSuccess = (param: any) => param + 'Anna';
+console.log(typeof promiseTask6)
 
-const print = (printParam: any) => console.log(printParam);
+const onSuccess = (param: string) => param + 'Anna';
+
+const print = (printParam: string) => console.log(printParam);
 
 promiseTask6.then((resolve) => onSuccess(resolve)).then((resolve) => print(resolve));
 
@@ -82,18 +84,20 @@ promiseTask6.then((resolve) => onSuccess(resolve)).then((resolve) => print(resol
 // и выведите в консоль {name, age, city}
 
 const promiseName = new Promise((resolve, reject) => {
-	const objPromise: any = {name: 'Anna'};
+	const objPromise: {name: string} = {name: 'Anna'};
 	resolve(objPromise);
 });
+
 const promiseAge = new Promise((resolve, reject) => {
-	const objPromise: any = {age: 16};
+	const objPromise: {age: number} = {age: 16};
 	resolve(objPromise);
 });
+
 const promiseCity = new Promise((resolve, reject) => {
-	const objPromise: any = {city: ''};
+	const objPromise: {city: string} = {city: ''};
 	resolve(objPromise);
 });
-// //@ts-ignore
+
 Promise.all([
 	promiseName,
 	promiseAge,

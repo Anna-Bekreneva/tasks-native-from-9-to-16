@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Simulate} from 'react-dom/test-utils';
 
 console.log('lesson 3');
 
@@ -19,34 +20,31 @@ console.log('lesson 3');
 
 //реализовать методы get, post, put, delete через axios
 
-axios('https://jsonplaceholder.typicode.com/comments/1')
-.then(response => console.log(response.data))
+axios('https://jsonplaceholder.typicode.com/comments/1').then(response => console.log(response.data)).
+catch(error => console.log(error));
 
 axios.post('https://jsonplaceholder.typicode.com/comments', {
-	body: "My first post require",
-	email: "firstRequire@gmail.com",
+	body: 'My first post require',
+	email: 'firstRequire@gmail.com',
 	id: 1,
-	name: "Anna",
+	name: 'Anna',
 	postId: 1,
-})
-.then((response) => console.log(response.data))
+}).then(response => console.log(response.data)).catch(error => console.log(error));
 
 axios.put('https://jsonplaceholder.typicode.com/comments/1', {
 	method: 'PUT',
-	body: "My first put require",
-	email: "anjbekrenewa@gmail.com",
+	body: 'My first put require',
+	email: 'anjbekrenewa@gmail.com',
 	id: 1,
-	name: "Anna",
+	name: 'Anna',
 	postId: 1,
-})
-.then((response) => console.log(response.data))
+}).then(response => console.log(response.data)).catch(error => console.log(error));
 
 axios.delete('https://jsonplaceholder.typicode.com/posts/1', {
 	headers: {
 		Authorization: 'authorizationToken'
 	},
-})
-.then(() => console.log('super'))
+}).then(() => console.log('super')).catch(error => console.log(error()));
 
 // just a plug
-export default ()=>{};
+export default () => {};
